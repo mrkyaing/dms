@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/layout">
+<body>
+	<div layout:fragment="content">
+		<h2>Create Deli Product</h2>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<div class="box-body">
+						<form class="form-horizontal" th:object="${deliproduct}"
+							th:action="@{/deliproduct/entry}" method="post">
+							<input type="hidden" th:field="*{Id}" />
+							<div class="box-body">
+								<div class="form-group">
+									<div class="col-sm-5">
+										<button type="submit" class="btn bg-purple btn-flat">Save</button>
+										<a href="/deliproduct/list" class="btn btn-default btn-flat">Back
+											to List</a>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Product Code</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control"
+											placeholder="Deli Product Code" th:field="*{DeliProductCode}"
+											required="required">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Deli Product Name</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control"
+											placeholder="Deli Product Name" th:field="*{DeliProductName}"
+											required="required">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Deli ProductPrice</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control"
+											placeholder="Deli Product Price"
+											th:field="*{DeliProductPrice}" required="required">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Deli Product Size</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control"
+											placeholder="Deli Product Size" th:field="*{DeliProductSize}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Deli Date</label>
+									<div class="col-sm-5">
+										<input type="date" name="delidate" value="th:field=*{DeliDate}" required="required">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Deli Time</label>
+									<div class="col-sm-5">
+										<input type="number" th:field="*{DeliTimeInHours}"><label>(HH)</label>:
+										<input type="number" th:field="*{DeliTimeInMinutes}"><label>(MM)</label>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Remark</label>
+									<div class="col-sm-5">
+										<textarea th:field="*{Remark}" cols="70"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">To Township</label>
+									<div class="col-sm-5">
+										<select class="form-control" th:field="*{TownshipID}">
+											<option th:each="v:${townshipdata}" th:value="${v.id}"
+												th:text="${v.description}"></option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">From Customer </label>
+									<div class="col-sm-5">
+										<select class="form-control" th:field="*{FromCustomerID}">
+											<option th:each="v:${fromcustomerdata}" th:value="${v.id}"
+												th:text="${v.name}"></option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">To Customer</label>
+									<div class="col-sm-5">
+										<select class="form-control" th:field="*{ToCustomerID}">
+											<option th:each="v:${tocustomerdata}" th:value="${v.id}"
+												th:text="${v.name}"></option>
+										</select>
+									</div>
+								</div>
+
+								
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="myJavascript">
+		<script type="text/javascript">			
+		</script>
+	</th:block>
+</body>
+</html>
+

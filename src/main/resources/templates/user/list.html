@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout"
+	th:with="title=${'User'}, subTitle=${'List'}">
+<body>
+	<div layout:fragment="content">
+		<div class="row row-bottom-separator">
+			<div class="col-xs-12">
+				<div class="btn-group">
+					<a href="/user/entry" class="btn bg-purple btn-flat">New</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body" th:if="${not #lists.isEmpty(userdata)}">
+					<table id="tblproductList"
+						class="table table-bordered table-striped dt-responsive nowrap"
+						cellspacing="0" width="100%">
+						<thead>
+							<tr>
+						   <td >User Name</td>
+			                <td>Email</td>
+			                <td >Security Question</td>
+			                <td >Security Answer</td>
+			                 <td >Enable?</td>
+			                  <td >Created Date</td>
+			                <td>Action</td>
+							</tr>
+						</thead>
+						<tbody>
+						<tr  th:each="u:${userdata}">
+			                <td th:text="${u.username}"></td>
+			                <td th:text="${u.email}"></td>
+			                <td th:text="${u.securityQuestion}"></td>
+			                <td th:text="${u.securityAnswer}"></td>
+			                 <td th:text="${u.enabled}"></td>
+			                  <td th:text="${u.createdDate}"></td>
+			                <td>
+			              <div class="btn-group">
+										<a th:href="${'/user/edit/' + u.Id}" class="btn bg-purple btn-flat"><span
+											class="fa fa-edit" aria-hidden="true"></span></a>
+										<button type="button" 
+											class="btn bg-purple btn-flat dropdown-toggle"
+											data-toggle="dropdown">
+											<span class="caret"></span> <span class="sr-only">Toggle
+												Dropdown</span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a th:href="${'/user/delete/' + u.Id}" onClick="return confirm('are you sure to delete it?');">Delete</a></li>
+										</ul>
+									</div>
+			            
+			                </td>
+			            </tr>
+						</tbody>
+					</table>
+					</div>								
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="myJavascript">
+		<script>
+		
+		$(document).ready(function() {
+			   var dataSrc = [];
+
+			   var table = $('#tblproductList').DataTable({
+			      'initComplete': function(){
+			         var api = this.api();
+
+			         // Populate a dataset for autocomplete functionality
+			         // using data from first, second and third columns
+			         api.cells('tr', [0, 1, 2]).every(function(){
+			            // Get cell data as plain text
+			            var data = $('<div>').html(this.data()).text();           
+			            if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+			         });
+			         
+			         // Sort dataset alphabetically
+			         dataSrc.sort();
+			        
+			         // Initialize Typeahead plug-in
+			         $('.dataTables_filter input[type="search"]', api.table().container())
+			            .typeahead({
+			               source: dataSrc,
+			               afterSelect: function(value){
+			                  api.search(value).draw();
+			               }
+			            }
+			         );
+			      }
+			   });
+			});
+        }
+		</script>
+	</th:block>
+</body>
+</html>
+

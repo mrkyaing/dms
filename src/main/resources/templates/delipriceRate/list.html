@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	th:with="title=${'Deli Price Rate'}, subTitle=${'List'}">
+<body>
+	<div layout:fragment="content">
+		<div class="row row-bottom-separator">
+			<div class="col-xs-12">
+				<div class="btn-group">
+					<a href="/delipricerate/entry" class="btn bg-purple btn-flat">New</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body" th:if="${not #lists.isEmpty(deliratemasterdata)}">
+					<table id="tbldelirate"
+						class="table table-bordered table-striped dt-responsive nowrap"
+						cellspacing="0" width="100%">
+						<thead>
+							<tr>
+						   <td >Deli Rout Name</td>
+			                <td>City</td>
+			                  <td>Township</td>	
+			                 <td>Price</td>						               
+			                  <td >Created Date</td>
+			                <td>Action</td>
+							</tr>
+						</thead>
+						<tbody>
+						<tr th:each="v:${deliratemasterdata}">
+			                <td th:text="${v.priceRateName}"></td>
+			                <td th:text="${v.City.description}"></td>
+			               <td >
+			               <p th:each="v:${townshipdata}"
+       							th:text="${v.description}">***</p>
+			               </td>
+			                <td th:text="${v.price}"></td>			               
+			                <td th:text="${v.createdDate}"></td>
+			                <td>
+			              <div class="btn-group">
+										<a th:href="${'/delipricerate/edit/' + v.Id}" class="btn bg-purple btn-flat"><span
+											class="fa fa-edit" aria-hidden="true"></span></a>
+										<button type="button"
+											class="btn bg-purple btn-flat dropdown-toggle"
+											data-toggle="dropdown">
+											<span class="caret"></span> <span class="sr-only">Toggle
+												Dropdown</span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a th:href="${'/delipricerate/delete/' + v.Id}" onClick="return confirm('are you sure to delete it?');">Delete</a></li>
+										</ul>
+									</div>
+			            
+			                </td>
+			            </tr>
+						</tbody>
+					</table>
+					</div>								
+				</div>
+			</div>
+		</div>
+	</div>
+http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=8068
+	<th:block layout:fragment="myJavascript">
+		<script>
+			$(document).ready(function() {
+				bindGrid("#tbldelirate");
+			});
+
+			function bindGrid(id) {
+				// Setup - add a text input to each footer cell
+				//$(id + ' thead tr').clone(true).appendTo(id + ' thead');
+				$(id + ' thead tr:eq(1) th')
+						.each(
+								function(i) {
+									if (i != 4) {
+										var title = $(this).text();
+										$(this)
+												.html(
+														'<input type="text" placeholder="Search..." />');
+									} else {
+										$(this).html('');
+									}
+
+									$('input', this)
+											.on(
+													'keyup change',
+													function() {
+														if (table.column(i)
+																.search() !== this.value) {
+															table
+																	.column(i)
+																	.search(
+																			this.value)
+																	.draw();
+														}
+													});
+								});
+
+				$(id).DataTable();
+			}
+		</script>
+	</th:block>
+</body>
+</html>
+

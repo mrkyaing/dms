@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout" xmlns:th="http://www.thymeleaf.org"
+	th:with="title=${'Assign Delivery Order'}, subTitle=${'List'}">
+<body>
+	<div layout:fragment="content">
+		<div class="row row-bottom-separator">
+			<div class="col-xs-12">
+				<div class="btn-group">
+					<a href="/deliassign/entry" class="btn bg-purple btn-flat">New</a>
+				</div>
+				
+				
+		<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default" style="margin-right: 5px;">
+			<i class="fa fa-download" ></i> Print Order List
+				</button>
+				<div class="pull-right" style="width:3%"></div>
+				<div class="form-group pull-right">								
+										<select class="form-control select2 "
+											style="width: 100%;" data-placeholder="Select Delivery Man"
+											tabindex="-1" aria-hidden="true">
+											<option>Aung Win Nyunt</option>
+											<option>Htet Aung Kyaw</option>
+											<option>Kywa Swar Win</option>
+											<option>Min Than</option>
+											<option>Ko Tin Lin</option>
+										</select>								
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body">
+						<table id="tblDOReceiveList"
+							class="table table-bordered table-striped dt-responsive nowrap"
+							cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<th width="10%">Assigned Date</th>
+									<th width="10%">Delivery Assign No.</th>
+									<th width="10%">Delivery Man</th>
+									<th width="10%">TEE Codes</th>
+									<th width="10%">Due Date</th>
+									<th width="8%">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2018-09-13</td>
+									<td>DOA0000001</td>
+									<td>Mg Phyu</td>
+									<td>TEE0000001, TEE0000002, TEE0000003</td>
+									<td>2018-09-13</td>
+									<td>
+										<div class="btn-group">
+											<a href="/doassign/entry" class="btn bg-purple btn-flat"><span
+												class="fa fa-edit" aria-hidden="true"></span></a>
+											<button type="button"
+												class="btn bg-purple btn-flat dropdown-toggle"
+												data-toggle="dropdown">
+												<span class="caret"></span> <span class="sr-only">Toggle
+													Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Delete</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2018-09-13</td>
+									<td>DOA0000002</td>
+									<td>Mg Mya</td>
+									<td>TEE0000004, TEE0000005, TEE0000006</td>
+									<td>2018-09-13</td>
+									<td>
+										<div class="btn-group">
+											<a href="/doassign/entry" class="btn bg-purple btn-flat"><span
+												class="fa fa-edit" aria-hidden="true"></span></a>
+											<button type="button"
+												class="btn bg-purple btn-flat dropdown-toggle"
+												data-toggle="dropdown">
+												<span class="caret"></span> <span class="sr-only">Toggle
+													Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#" onClick="return confirm('are you sure to delete it?');">Delete</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2018-09-13</td>
+									<td>DOA0000003</td>
+									<td>Mg Ba</td>
+									<td>TEE0000007, TEE0000008, TEE0000009</td>
+									<td>2018-09-13</td>
+									<td>
+										<div class="btn-group">
+											<a href="/doassign/entry" class="btn bg-purple btn-flat"><span
+												class="fa fa-edit" aria-hidden="true"></span></a>
+											<button type="button"
+												class="btn bg-purple btn-flat dropdown-toggle"
+												data-toggle="dropdown">
+												<span class="caret"></span> <span class="sr-only">Toggle
+													Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Delete</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Orders of Aung Win Nyunt </h4>
+              </div>
+              <div class="modal-body">
+               <div class="checkbox icheck">
+	           		Printing design will use current layout of system. (Need to discuss with customer)
+	          </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+	</div>
+
+	<th:block layout:fragment="myJavascript">
+		<script>
+			$(document).ready(function() {
+				bindGrid("#tblDOReceiveList");
+			});
+
+			function bindGrid(id) {
+				// Setup - add a text input to each footer cell
+				$(id + ' thead tr').clone(true).appendTo(id + ' thead');
+				$(id + ' thead tr:eq(1) th')
+						.each(
+								function(i) {
+									if (i != 5) {
+										var title = $(this).text();
+										$(this)
+												.html(
+														'<input type="text" placeholder="Search..." />');
+									} else {
+										$(this).html('');
+									}
+
+									$('input', this)
+											.on(
+													'keyup change',
+													function() {
+														if (table.column(i)
+																.search() !== this.value) {
+															table
+																	.column(i)
+																	.search(
+																			this.value)
+																	.draw();
+														}
+													});
+								});
+
+				$(id).DataTable();
+			}
+		</script>
+	</th:block>
+</body>
+</html>
+

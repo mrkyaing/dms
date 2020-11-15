@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:th="http://www.thymeleaf.org"
+layout:decorator="layout/layout"
+th:with="title=${'City'}, subTitle=${'Entry'}">
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<div class="box-body">
+						<form role="form" id="frmCity" class="form-horizontal" th:object="${city}" th:action="@{/city/entry}" method="post">
+		                <input type="hidden" th:field="*{id}"/>
+							<div class="row row-bottom-separator">
+								<div class="col-md-4">
+									<div class="btn-group">
+										<button type="submit" class="btn bg-purple btn-flat">Save</button>
+										<a href="/city/list" class="btn btn-default btn-flat">Back
+											to List</a>
+									</div>
+								</div>
+							</div>							
+							<div class="box-body">
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">City Name</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="name"
+											 placeholder="Name" th:field="*{name}" required="required">
+									</div>
+								</div>								
+								<div class="form-group">
+									<label class="col-sm-2 control-label">City Description</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="description"
+											 placeholder="Name" th:field="*{description}" required="required">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<th:block layout:fragment="myJavascript">
+		<script type="text/javascript">	
+		</script>
+	</th:block>
+</body>
+</html>
+

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout"
+	th:with="title=${'Delivery Order'}, subTitle=${'List'}">
+<body>
+	<div layout:fragment="content">
+		<div class="row row-bottom-separator">
+
+
+			<div class="col-xs-12">
+				<form class="form-inline">
+					<div class="form-group">
+						<div class="btn-group">
+							<a class="btn bg-purple btn-sm dropdown-toggle btn-flat"
+								data-toggle="dropdown" aria-expanded="false">Action <span
+								class="fa fa-caret-down"></a>
+							<ul class="dropdown-menu dropdown-menu" role="menu">
+								<li><a type="button" href="/doreceive/entry">New</a></li>
+								<li><a type="button" href="/doreceive/entry">Edit</a></li>
+								<li><a type="button" href="#" data-toggle="modal"
+									data-target="#modal-default">Update Status</a></li>
+								<li><a href="#">Delete</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="btn-group">
+							<button type="button"
+								class="btn bg-purple btn-sm dropdown-toggle btn-flat"
+								data-toggle="dropdown" aria-expanded="false">
+								Print <span class="fa fa-caret-down"></span>
+							</button>
+							<ul class="dropdown-menu dropdown-menu" role="menu">
+								<li><a type="button" href="#" data-toggle="modal"
+									data-target="#modal-overview">Delivery List</a></li>
+								<li><a type="button" href="#" data-toggle="modal"
+									data-target="#modal-overview">Deli code label</a></li>
+								<li><a href="#" data-toggle="modal"
+									data-target="#modal-overview">Invoice</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group input-group-sm">
+							<select class="form-control">
+								<option selected="selected" value="0">Select Delivery
+									Man</option>
+								<option>Mg Ba</option>
+								<option>Mg Mya</option>
+								<option>Mg Phyu</option>
+							</select> <span class="input-group-btn">
+								<button type="button" class="btn bg-purple btn-flat">Assign</button>
+							</span>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body">
+						<table id="tblDOReceiveList"
+							class="table table-bordered table-striped nowrap" cellspacing="0"
+							width="100%">
+							<thead>
+								<tr>
+									<th width="5%"></th>
+									<th width="5%">Deli Code</th>
+									<th width="5%">Received Date</th>
+									<th width="5%">Status</th>
+									<th width="10%">Customer</th>
+									<th width="10%">Delivery Man</th>
+									<th width="10%">End User</th>
+									<th width="10%">Phone</th>
+									<th width="10%">City/Township</th>
+									<th width="5%">Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td align="center">1</td>
+									<td>Deli0000001</td>
+									<td>2018-09-13</td>
+									<td><span class="label label-success">Completed</span></td>
+									<td>Giordano</td>
+									<td>Si Thu Phyo</td>
+									<td>Si Thu Phyo</td>
+									<td>09444626937</td>
+									<td>Yangon/Hlaing</td>
+									<td>10000</td>
+								</tr>
+								<tr>
+									<td align="center">2</td>
+									<td>Deli 0000002</td>
+									<td>2018-09-12</td>
+									<td><span class="label label-danger">Cancel</span></td>
+									<td>Sai Sai Cosmetics</td>
+									<td>Si Thu Phyo</td>
+									<td>Si Thu Ko Ko</td>
+									<td>09444621117</td>
+									<td>Yangon/Lanmadaw</td>
+									<td>15000</td>
+								</tr>
+								<tr>
+									<td align="center">3</td>
+									<td>Deli 0000003</td>
+									<td>2018-09-11</td>
+									<td><span class="label label-primary">Assigned</span></td>
+									<td>Ni Ni Cosmetics</td>
+									<td>Si Thu Phyo</td>
+									<td>Ye Htut Aung</td>
+									<td>0944462222</td>
+									<td>Yangon/Alone</td>
+									<td>20000</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<div class="modal fade" id="modal-default" style="display: none;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title">Update Status</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label> <input type="radio" name="r1" class="minimal"
+								checked> Cancelled by End User
+							</label> <label> <input type="radio" name="r1" class="minimal">
+								Cancelled by Customer
+							</label> <label> <input type="radio" name="r1" class="minimal">
+								Completed
+							</label>
+						</div>
+						<div class="form-group">
+							<label>Remarks</label>
+							<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Save
+							changes</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+
+		<div class="modal fade" id="modal-overview" style="display: none;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title">Orders Overview</h4>
+					</div>
+					<div class="modal-body">
+						<div class="checkbox icheck">Printing design will be
+							tablular format. (Need to discuss with customer)</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+	</div>
+
+
+	<th:block layout:fragment="myJavascript">
+		<script>
+			var table;
+
+			$(document).ready(function() {
+				bindGrid("#tblDOReceiveList");
+			});
+			
+			function bindGrid(id){
+				$(id + ' thead tr').clone(true).appendTo(id + ' thead');
+				$(id + ' thead tr:eq(1) th')
+						.each(
+								function(i) {
+									if (i != 0) {
+										var title = $(this).text();
+										$(this)
+												.html(
+														'<input type="text" placeholder="Search..." />');
+									} else {
+										$(this).html('');
+									}
+
+									$('input', this)
+											.on(
+													'keyup change',
+													function() {
+														if (table.column(i)
+																.search() !== this.value) {
+															table
+																	.column(i)
+																	.search(
+																			this.value)
+																	.draw();
+														}
+													});
+								});
+				
+				table = $(id).DataTable({
+				      'columnDefs': [
+				         {
+				            'targets': 0,
+				            'checkboxes': true
+				         }
+				      ],
+				      "order": [1, "asc"],
+				      orderCellsTop : true,
+				      "scrollX" : true,
+				   });
+			}
+			
+			$('input[type="radio"].minimal').iCheck({
+				radioClass : 'iradio_minimal-blue'
+			})
+		</script>
+	</th:block>
+</body>
+</html>
+

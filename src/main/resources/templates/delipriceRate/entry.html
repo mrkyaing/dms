@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layout/layout"
+	th:with="title=${'Deli Price Rate'}, subTitle=${'Entry'}">
+<body>
+	<div layout:fragment="content">
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<div class="box-body">
+						<form role="form" id="frdelipricerate" class="form-horizontal" th:object="${DeliRateMasterVM}" th:action="@{/delipricerate/entry}" method="post">
+							<div class="box-body">
+							<div class="row row-bottom-separator">
+								<div class="col-md-4">
+									<div class="btn-group">
+										<button type="submit" class="btn bg-purple btn-flat">Save</button>
+										<a href="/delipricerate/list" class="btn btn-default btn-flat">Back
+											to List</a>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+									<label class="col-sm-2 control-label">Deli price Rate Name</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" placeholder="Deli price Rate Name" th:field="*{priceRateName}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">City</label>
+									<div class="col-sm-5">
+										 <select class="form-control" id="citydata" th:field="*{cityId}">
+					                    <option th:each="v:${citydata}"
+					                            th:value="${v.id}"
+					                            th:text="${v.description}"></option>
+					                </select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Township</label>
+									<div class="col-sm-5">
+										<select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+											multiple="multiple" data-placeholder="Select Township" tabindex="-1" aria-hidden="true" th:field="*{townshipIDList}">
+											<option th:each="v:${townshipdata}"
+					                            th:value="${v.id}"
+					                            th:text="${v.description}"></option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Price</label>
+									<div class="col-sm-5">
+										<input type="number" class="form-control" placeholder="Price" th:field="*{price}">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<th:block layout:fragment="myJavascript">
+		<script type="text/javascript">
+			$(".select2").select2();
+		</script>
+	</th:block>
+</body>
+</html>
+

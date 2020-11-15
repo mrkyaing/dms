@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layout/layout"
+	th:with="title=${'Staff'}, subTitle=${'Entry'}">
+<body>
+	<div layout:fragment="content">	
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<div class="box-body">
+						<form role="form"  class="form-horizontal" th:object="${staff}" th:action="@{/staff/entry}" method="post">
+							
+										<div class="row row-bottom-separator">
+										<div class="col-md-4">
+											<div class="btn-group">
+												<button type="submit" class="btn bg-purple btn-flat">Save</button>
+												<a href="/staff/list" class="btn btn-default btn-flat">Back
+													to List</a>
+											</div>
+										</div>
+									</div>
+							
+							<div class="box-body">
+								<div class="form-group">
+									<label for="txtName" class="col-sm-2 control-label">Name</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="txtName" th:field="*{name}" required="required"
+											id="txtName" placeholder="Name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="txtName" class="col-sm-2 control-label">NRC</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control"  th:field="*{nrc}" required="required"
+											 placeholder="nrc">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Phone</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" placeholder="Phone" th:field="*{phone}" required="required">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="txtName" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control"  th:field="*{email}" required="required"
+											 placeholder="Email address ">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Basic Salary</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" placeholder="Basic Salary" th:field="*{basicsalary}" required="required">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label">phone bill allowance</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" placeholder="phone bill allowance" th:field="*{phonebillallowance}" required="required">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Township</label>
+									<div class="col-sm-5">
+										 <select class="form-control" th:field="*{townshipId}">
+					                    <option th:each="v:${townshipdata}"
+					                            th:value="${v.id}"
+					                            th:text="${v.description}"></option>
+					                </select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">City</label>
+									<div class="col-sm-5">
+									 <select class="form-control" id="citydata">
+					                    <option th:each="v:${citydata}"
+					                            th:value="${v.id}"
+					                            th:text="${v.description}"></option>
+					                </select>
+									</div>
+									
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Full Address</label>
+									<div class="col-sm-5">
+										<textarea class="form-control" rows="3" id="txtFullAddress"
+											placeholder="Full Address ..." th:field="*{address}" required="required"></textarea>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<th:block layout:fragment="myJavascript">
+		<script type="text/javascript">
+			
+		</script>
+	</th:block>
+</body>
+</html>
+

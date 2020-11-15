@@ -1,0 +1,18 @@
+# This is a sample build configuration for Java (Maven).
+# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: maven:3.3.9
+
+pipelines:
+  default:
+    - step:
+        # set HEROKU_API_KEY and HEROKU_APP_NAME environment variables
+        # set clone `depth: full' as described here: https://confluence.atlassian.com/x/Y9-5Mw
+        name: Deploy to Heroku
+        deployment: test   # set to test, staging or production
+        # trigger: manual  # uncomment to have a manual step
+        script:
+          - git push https://heroku:cdaf5d1b-7328-44be-88b8-681a6fe11e80@git.heroku.com/ipdms.git HEAD
+

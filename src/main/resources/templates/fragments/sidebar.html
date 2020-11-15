@@ -1,0 +1,172 @@
+<aside class="main-sidebar" th:fragment="sidebar">
+	<!-- sidebar: style can be found in sidebar.less -->
+	<section class="sidebar">
+		<!-- /.search form -->
+		<!-- sidebar menu: : style can be found in sidebar.less -->
+		<ul class="sidebar-menu" data-widget="tree">
+		
+		<li class="header"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;User & Role Mgt</li>
+		
+		<li class="treeview"><a href="#"> <i class="fa fa-address-book-o"></i>
+					<span>User</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/user/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/user/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul>
+			</li>
+		
+		
+		<li class="treeview"><a href="#"> <i class="fa fa-address-book-o"></i>
+					<span>Role</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/role/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/role/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul>
+			</li>
+			
+			<li class="header"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;Master Setup</li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-address-book-o"></i>
+					<span>City</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/city/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/city/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul>
+			</li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-address-book-o"></i>
+					<span>Township</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/township/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/township/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul>
+			</li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-address-book"></i>
+					<span>Customer</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/customer/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/customer/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul>
+			</li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-address-book-o"></i>
+					<span>Staff</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/staff/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/staff/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul></li>
+			<li class="treeview"><a href="#"> <i class="fa fa-money"></i>
+					<span>Deli Rate</span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/delipricerate/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/delipricerate/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul></li>
+				<!-- for Product tree view -->
+				<li class="treeview"><a href="#"> <i class="fa fa-money"></i>
+					<span>Deli Product </span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/deliproduct/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/deliproduct/entry"><i class="fa fa-plus-square"></i>
+							Entry</a></li>
+				</ul></li>
+				
+				
+							
+				
+			<li class="header"><i class="fa fa-scissors"></i>&nbsp;&nbsp;&nbsp;Operation</li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-money"></i>
+					<span>Deli Assign</span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/deliassign/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/deliassign/entry"><i
+							class="fa fa-plus-square"></i> Entry</a></li>
+				</ul>
+			</li>
+			
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-send"></i>
+					<span>Deli Order Process</span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/delireceive/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/delireceive/entry"><i
+							class="fa fa-plus-square"></i> Entry</a></li>
+				</ul>
+			</li>
+		
+		<li class="header"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;Reports</li>
+		<li class="treeview"><a href="#"> <i class="fa fa-send"></i>
+					<span>Deli Summary </span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/delisummary/list"><i class="fa fa-list"></i>
+							List</a></li>
+				</ul>
+			</li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-send"></i>
+					<span>Deli Detail </span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="/delireceive/list"><i class="fa fa-list"></i>
+							List</a></li>
+					<li><a href="/delireceive/entry"><i
+							class="fa fa-plus-square"></i> Entry</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<!-- /.sidebar -->
+</aside>

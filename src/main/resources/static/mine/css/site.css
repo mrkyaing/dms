@@ -1,0 +1,21 @@
+.error {
+    color : red;
+}
+
+.row-bottom-separator {
+    margin-bottom : 10px;
+}
+
+input[type="file"]{
+    color: transparent;
+}
+
+thead input {
+    width: 100%;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    visibility: hidden;
+}

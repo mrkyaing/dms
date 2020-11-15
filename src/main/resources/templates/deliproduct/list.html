@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout" xmlns:th="http://www.thymeleaf.org"
+	th:with="title=${'Deli Product'}, subTitle=${'List'}">
+<body>
+	<div layout:fragment="content">
+		<div class="row row-bottom-separator">
+			<div class="col-xs-12">
+				<div class="btn-group">
+					<a href="/deliproduct/entry" class="btn bg-purple btn-flat">New</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body" th:if="${not #lists.isEmpty(productdata)}">
+						<table id="tblproductList"
+							class="table table-bordered table-striped dt-responsive nowrap"
+							cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<td>Deli Product Code</td>
+									<td>Deli Product Name</td>
+									<td>Deli Product Price</td>
+									<td>Deli Date</td>
+									<td>Deli Time(HH:MM)</td>
+									<td>from Customer</td>
+									<td>to Customer</td>
+									<td>To Township</td>
+									<td>Frequency Count</td>
+									<td>Action</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="product:${productdata}">
+									<td th:text="${product.DeliProductCode}"></td>
+									<td th:text="${product.DeliProductName}"></td>
+									<td th:text="${product.DeliProductPrice}"></td>
+									<td th:text="${product.DeliDate}"></td>
+									<td><label th:text="${product.DeliTimeInHours}"></label>:
+										<label th:text="${product.DeliTimeInMinutes}"></label>
+									</td>
+									<td th:text="${product.fromCustomer.name}"></td>
+									<td th:text="${product.toCustomer.name}"></td>
+									<td th:text="${product.Township.description}"></td>
+									<td>1</td>
+									<td>
+										<div class="btn-group">
+											<a th:href="${'/deliproduct/edit/' + product.Id}"
+												class="btn bg-purple btn-flat"><span class="fa fa-edit"
+												aria-hidden="true"></span></a>
+											<button type="button"
+												class="btn bg-purple btn-flat dropdown-toggle"
+												data-toggle="dropdown">
+												<span class="caret"></span> <span class="sr-only">Toggle
+													Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a th:href="${'/deliproduct/delete/' + product.Id}" onClick="return confirm('are you sure to delete it?');">Delete</a></li>
+											</ul>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="myJavascript">
+		<script>
+		
+		$(document).ready(function() {
+			   var dataSrc = [];
+
+			   var table = $('#tblproductList').DataTable({
+			      'initComplete': function(){
+			         var api = this.api();
+
+			         // Populate a dataset for autocomplete functionality
+			         // using data from first, second and third columns
+			         api.cells('tr', [0, 1, 2]).every(function(){
+			            // Get cell data as plain text
+			            var data = $('<div>').html(this.data()).text();           
+			            if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+			         });
+			         
+			         // Sort dataset alphabetically
+			         dataSrc.sort();
+			        
+			         // Initialize Typeahead plug-in
+			         $('.dataTables_filter input[type="search"]', api.table().container())
+			            .typeahead({
+			               source: dataSrc,
+			               afterSelect: function(value){
+			                  api.search(value).draw();
+			               }
+			            }
+			         );
+			      }
+			   });
+			});
+		</script>
+	</th:block>
+</body>
+</html>
+
